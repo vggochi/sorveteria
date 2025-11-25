@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Produto</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://whbgzgkhlnpbzirctcqp.supabase.co"></script>
+</head>
+<body>
+  <header>
+    <h1>Cadastro de Novo Produto</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="cadastro">
+      <form id="formCadastro">
+        <label for="nome">Nome do Produto:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="categoria">Categoria:</label>
+        <select id="categoria" name="categoria" required>
+          <option value="Tradicional">Tradicional</option>
+          <option value="Premium">Premium</option>
+          <option value="Especial">Especial</option>
+        </select>
+
+        <label for="preco">Preço:</label>
+        <input type="number" id="preco" name="preco" step="0.01" required>
+
+        <button type="submit">Cadastrar Produto</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sorveteria Delícia</p>
+  </footer>
+
+  <script>
+    // Inicializa o Supabase
+    const supabase = supabase.createClient(
+      "https://whbgzgkhlnpbzirctcqp.supabase.co",   // coloque aqui o seu URL
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndoYmd6Z2tobG5wYnppcmN0Y3FwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwNDkyNjEsImV4cCI6MjA3OTYyNTI2MX0.L4pk0NhD4lMxnDj5s0CfJpBdfIGIKttS7VIYZoxKn6g"             // coloque aqui sua anon key
+    );
+
+    const form = document.getElementById("formCadastro");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const nome = document.getElementById("nome").value;
+      const categoria = document.getElementById("categoria").value;
+      const preco = parseFloat(document.getElementById("preco").value);
+
+      const { data, error } = await supabase
+        .from("produtos")
+        .insert([{ nome, categoria, preco }]);
+
+      if (error) {
+        alert("Erro ao cadastrar: " + error.message);
+      } else {
+        alert("Produto cadastrado!");
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>

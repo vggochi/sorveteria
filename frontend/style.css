@@ -1,0 +1,151 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fonte e fundo */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #fff8f0, #ffe5d9);
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Cabeçalho */
+header {
+  background: #527457;
+  color: white;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ffe5d9;
+}
+
+/* Conteúdo principal */
+main {
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Seção de introdução */
+.intro {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.intro h2 {
+  font-size: 1.8rem;
+  color: #57745c;
+  margin-bottom: 10px;
+}
+
+/* Cardápio */
+.cardapio h2 {
+  font-size: 1.8rem;
+  color: #57745c;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.cardapio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.produto {
+  background-color: #fff;
+  border: 2px solid #628f76;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.produto h3 {
+  color: #a7c9a0;
+  margin-bottom: 10px;
+}
+
+.produto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Cadastro */
+.cadastro {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border: 2px solid #628f76;
+  border-radius: 12px;
+}
+
+.cadastro form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cadastro label {
+  font-weight: bold;
+  color: #333;
+}
+
+.cadastro input,
+.cadastro select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.cadastro button {
+  padding: 12px;
+  background: #527457;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cadastro button:hover {
+  background: #80a876;
+}
+
+/* Rodapé */
+footer {
+  background-color: #80a876;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  font-size: 0.9rem;
+}

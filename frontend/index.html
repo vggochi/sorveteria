@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorveteria Delícia</title>
+  <link rel="stylesheet" href="style.css">
+  <li><a href="cadastro.html">Cadastro</a></li>
+
+</head>
+<body>
+  <header>
+    <h1>🍦 Sorveteria Roma</h1>
+    <nav>
+      <ul>
+        <li><a href="#cardapio">Cardápio</a></li>
+        <li><a href="#clientes">Clientes</a></li>
+        <li><a href="#pedidos">Pedidos</a></li>
+        <li><a href="cadastro.html">Cadastro</a></li> <!-- Link para página de cadastro -->
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h2>Bem-vindo!</h2>
+      <p>Descubra os sabores mais incríveis e refrescantes da nossa sorveteria.</p>
+    </section>
+
+    <!-- Cardápio -->
+    <section id="cardapio" class="cardapio">
+      <h2>Nosso Cardápio</h2>
+      <div class="cardapio-grid">
+        <div class="produto">
+          <h3>Chocolate Belga</h3>
+          <p>Categoria: Premium</p>
+          <p>Preço: R$ 15,90</p>
+        </div>
+        <div class="produto">
+          <h3>Morango</h3>
+          <p>Categoria: Tradicional</p>
+          <p>Preço: R$ 8,50</p>
+        </div>
+        <div class="produto">
+          <h3>Chocomenta</h3>
+          <p>Categoria: Tradicional</p>
+          <p>Preço: R$ 14,00</p>
+        </div>
+        <div class="produto">
+          <h3>Baunilha</h3>
+          <p>Categoria: Tradicional</p>
+          <p>Preço: R$ 12,00</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sorveteria Roma - Todos os direitos reservados</p>
+  </footer>
+
+  <script src="https://whbgzgkhlnpbzirctcqp.supabase.co"></script>
+<script>
+  const supabase = supabase.createClient(
+    "https://whbgzgkhlnpbzirctcqp.supabase.co",   // mesmo URL
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndoYmd6Z2tobG5wYnppcmN0Y3FwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwNDkyNjEsImV4cCI6MjA3OTYyNTI2MX0.L4pk0NhD4lMxnDj5s0CfJpBdfIGIKttS7VIYZoxKn6g"             // mesma anon key
+  );
+
+  async function carregarProdutos() {
+    const { data, error } = await supabase
+      .from("produtos")
+      .select("*");
+
+    if (error) {
+      console.error("Erro ao carregar produtos:", error.message);
+      return;
+    }
+
+    const container = document.querySelector(".cardapio-grid");
+    container.innerHTML = ""; // limpa os produtos fixos
+
+    data.forEach(produto => {
+      const card = document.createElement("div");
+      card.className = "produto";
+      card.innerHTML = `
+        <h3>${produto.nome}</h3>
+        <p>Categoria: ${produto.categoria}</p>
+        <p>Preço: R$ ${produto.preco.toFixed(2)}</p>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  carregarProdutos();
+</script>
+
+</body>
+
+</html>
